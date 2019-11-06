@@ -10,6 +10,9 @@ public class BulletController : MonoBehaviour
 
     //TODO: create a reference to the BulletPoolManager
 
+
+
+    GameObject bullets = BulletPoolManager.sharedInstnace.GetBullet();
     void Start()
     {
         boundary.Top = 2.45f;
@@ -34,7 +37,16 @@ public class BulletController : MonoBehaviour
         {
             //TODO: This code needs to change to use the BulletPoolManager's
             //TODO: ResetBullet function which will return the bullet to the pool
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+
+            if(gameObject.tag == "Bullet")
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

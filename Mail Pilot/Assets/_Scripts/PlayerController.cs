@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     public Boundary boundary;
     public GameController gameController;
     public Transform bulletSpawn;
-    public GameObject bullet;
+    public GameObject bullets;
+    public BulletPoolManager newManager;
 
     // private instance variables
     private AudioSource _thunderSound;
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
     private bool isFiring = false;
 
     //TODO: create a reference to the BulletPoolManager here
+   
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -119,7 +123,19 @@ public class PlayerController : MonoBehaviour
                 //TODO: GetBullet function which will return a reference to a 
                 //TODO: bullet object. 
                 //TODO: Ensure you position the new bullet at the bulletSpawn position
-                Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+                //Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+
+
+                GameObject bullet = newManager.GetBullet();
+                if (newManager.GetBullet() != null)
+                {
+                    bullet.transform.position = bulletSpawn.position;
+                    bullet.transform.rotation = bulletSpawn.rotation;
+                    bullet.SetActive(true);
+                }
+               
+
+
             }
 
         }
